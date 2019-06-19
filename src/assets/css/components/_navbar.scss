@@ -1,0 +1,133 @@
+@import '../shared/variables';
+
+.navbar {
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    color: white;
+    z-index: 100;
+}
+
+.navbar__vertical {
+    height: 100vh;
+    width: 60px;
+    position: absolute;
+}
+
+.navbar--logo-container {
+    height: 15%;
+    width: 40px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+    .navbar--logo {
+        background-image: url("/assets/images/logo.png");
+        background-size: cover; 
+        width: 40px;
+        height: 40px;
+    }   
+}
+
+.navbar--nav-item-container {
+    height: 70%;
+    width: 40px;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    .navbar--nav-item  {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.7);
+
+        &:hover{
+            cursor: pointer;
+            @extend .navbar--nav-item__selected;
+        }
+
+        .material-icons {
+            font-size: 17px;
+        }
+    }
+
+    .navbar--nav-item__selected {
+        background-color: rgba(0, 0, 0, 0.13);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 1);
+    }
+}
+
+.navbar--user-container {
+    height: 15%;
+    width: 40px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.navbar--sidenav {
+    position: absolute;
+    height: 100vh;
+    width: 250px;
+    background-color: white;
+    top: 0;
+    left: 60px;
+    box-shadow: 0 0 20px -15px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.navbar--sidenav__show {
+    display: block;
+    opacity: 1;
+    animation: sidenav-show 500ms 1 0s ease-in-out;
+    transform: translateX(0);
+}
+
+.navbar--sidenav__hidden {
+    display: none;
+    opacity: 0;
+    transform: translateX(-250px);
+    animation: sidenav-hide 800ms 1 0s ease-in-out;
+}
+
+@keyframes sidenav-show {
+    0% {
+        opacity: 0;
+        transform: translateX(-250px);
+        display: none;
+    }
+
+    20% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        display: block;
+    }
+}
+
+@keyframes sidenav-hide {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-250px);
+        display: none;
+    }
+}

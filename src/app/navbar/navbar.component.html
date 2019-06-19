@@ -1,0 +1,24 @@
+<nav class="navbar" [ngClass]="{
+        'navbar__vertical': orientation === 'vertical',
+        'navbar__horizontal': orientation === 'horizontal'
+    }">
+    <section class="navbar--logo-container">
+        <div class="navbar--logo"></div>
+    </section>
+    <section class="navbar--nav-item-container">
+        <div *ngFor="let item of navItems" class="navbar--nav-item"
+                [ngClass]="{'navbar--nav-item__selected': item.selected}"
+                (click)="onMenuSelection(item)">
+            <i class="material-icons">{{item.icon}}</i>
+        </div>
+    </section>
+    <section class="navbar--user-container">
+        <i class="material-icons">exit_to_app</i>
+    </section>
+</nav>
+
+<section class="navbar--sidenav" [ngClass]="{
+        'navbar--sidenav__show': isVisible,
+        'navbar--sidenav__hidden': !isVisible
+    }">
+</section>
