@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -34,20 +35,22 @@ export class NavbarComponent {
             ]
         },
         {
-            icon: 'message',
+            icon: 'all_inbox',
             route: ''
         },
         {
-            icon: 'search',
+            icon: 'notifications_active',
             route: ''
-        }
-    ]
+        },
+    ];
+
+    constructor(private readonly router: Router) {}
 
     onMenuSelection(navItem) {
         if (navItem.navItems) {
             this.isVisible = !this.isVisible;
         } else {
-
+            this.router.navigate([`${navItem.route}`]);
         }
     }
 }

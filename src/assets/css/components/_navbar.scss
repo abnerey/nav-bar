@@ -1,5 +1,13 @@
 @import '../shared/variables';
 
+@mixin item-hover() {
+    background-color: rgba(0, 0, 0, 0.13);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 1);
+    transition: all 150ms linear;
+    cursor: pointer;
+}
+
 .navbar {
     background-color: $primary-color;
     display: flex;
@@ -49,30 +57,43 @@
         margin: 10px;
         align-items: center;
         color: rgba(255, 255, 255, 0.7);
+        transition: all 150ms linear;
 
         &:hover{
-            cursor: pointer;
-            @extend .navbar--nav-item__selected;
+            @include item-hover();
         }
 
         .material-icons {
-            font-size: 17px;
+            font-size: 18px;
         }
     }
 
     .navbar--nav-item__selected {
-        background-color: rgba(0, 0, 0, 0.13);
-        border-radius: 10px;
-        color: rgba(255, 255, 255, 1);
+        @include item-hover();
     }
 }
 
-.navbar--user-container {
+.navbar--operation-container {
     height: 15%;
     width: 40px;
     justify-content: center;
     display: flex;
     align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+
+    .operation-container--item {
+        width: 40px;
+        height: 40px;
+        transition: all 150ms linear;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            @include item-hover();
+        }
+
+    }
 }
 
 .navbar--sidenav {
@@ -89,32 +110,31 @@
 .navbar--sidenav__show {
     display: block;
     opacity: 1;
-    animation: sidenav-show 500ms 1 0s ease-in-out;
+    animation: sidenav-show 300ms 1 0s ease-in-out;
     transform: translateX(0);
 }
 
 .navbar--sidenav__hidden {
     display: none;
     opacity: 0;
-    transform: translateX(-250px);
-    animation: sidenav-hide 800ms 1 0s ease-in-out;
+    animation: sidenav-hide 300ms 1 0s ease-in-out;
 }
 
 @keyframes sidenav-show {
     0% {
         opacity: 0;
-        transform: translateX(-250px);
+        //transform: translateX(-250px);
+        transform: translateX(-25px);
         display: none;
     }
 
-    20% {
-        opacity: 0.4;
+    50% {
+        display: block;
     }
 
     100% {
         opacity: 1;
         transform: translateX(0);
-        display: block;
     }
 }
 
@@ -122,12 +142,15 @@
     0% {
         opacity: 1;
         transform: translateX(0);
+    }
+
+    50% {
         display: block;
     }
 
     100% {
         opacity: 0;
-        transform: translateX(-250px);
+        transform: translateX(-25px);
         display: none;
     }
 }
